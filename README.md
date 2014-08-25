@@ -4,9 +4,9 @@ codoodler
 Doodle with strangers on InterWeb!
 
 
-This is a very simple multi-user doodling web app, using [Pubnub][pubnub] real-time network JavaScript API, that enable you to graw on the canvas with strangers.
+This is a very simple multi-user doodling web app, using [PubNub][pubnub] real-time network JavaScript API, that enable you to graw on the canvas with strangers.
 
-This toy app supports multiple inputs methods by using `mouse`, `touch`, and `pointer` events do the app is supported on desktop and touch-screen devices, including iOS and Android phones and tablet, and Windows 8 devices.
+This little toy app also supports multiple inputs methods by using `mouse`, `touch`, and `pointer` events do the app is supported on desktop and touch-screen devices, including iOS and Android phones and tablet, and Windows 8 devices.
 
 ## Demo
 
