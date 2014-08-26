@@ -18,5 +18,5 @@ If nobody else is present, try launching the URL on multiple tabs/browsers/devic
 
 
 
-[demo]: https://pubnub.github.io/codoodler/index.html
+[demo]: http://pubnub.github.io/codoodler/index.html
 [pubnub]: http://www.pubnub.com/docs/javascript/javascript-sdk.html
