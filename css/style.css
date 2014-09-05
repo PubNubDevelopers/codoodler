@@ -132,6 +132,9 @@ header div {
 .bubble #occupancy {
   	font-size: 32px;
 }
+.github {
+	display: none;
+}
 
 @media all and (orientation: landscape) {
 	canvas {
@@ -141,7 +144,7 @@ header div {
 	#colorSwatch {
 		display: inline-block;
 		width: 50px;
-		top: 100px;
+		top: 120px;
 		right: 20px;
 	}
 	.bubble {
@@ -179,5 +182,8 @@ header div {
 	.bubble #occupancy {
   		font-size: 40px;
 	  	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+	}
+	.github {
+		display: block;
 	}
 }	
