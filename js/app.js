@@ -76,9 +76,18 @@
     }
 
     function drawFromStream(message) {
-		if(!message || message.plots.length < 1) return;			
-	    drawOnCanvas(message.color, message.plots);
-	}
+		if(!message || message.plots.length < 1) return;
+		drawOnCanvas(message.color, message.plots);
+    }
+    
+    // Get Older and Past Drawings!
+    pubnub.history({
+    	channel  : channel,
+    	limit    : 100,
+    	callback : function(messages) {
+    		pubnub.each( messages[0], drawFromStream );
+    	}
+    })
 
     var isActive = false;
     var plots = [];
