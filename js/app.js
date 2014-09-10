@@ -30,7 +30,7 @@
 	canvas.addEventListener(moveEvent, draw, false);
 	canvas.addEventListener(upEvent, endDraw, false);
 
-	/* Pubnub */
+	/* PubNub */
 
 	var channel = 'draw3';
 
@@ -59,7 +59,7 @@
 			channel: channel,
 			message: data
 		});
-    }
+     }
 
     /* Draw on canvas */
 
@@ -79,15 +79,6 @@
 		drawOnCanvas(message.color, message.plots);
     }
     
-    // Get Older and Past Drawings!
-    pubnub.history({
-    	channel  : channel,
-    	limit    : 100,
-    	callback : function(messages) {
-    		pubnub.each( messages[0], drawFromStream );
-    	}
-    })
-
     // Get Older and Past Drawings!
     if(drawHistory) {
 	    pubnub.history({
