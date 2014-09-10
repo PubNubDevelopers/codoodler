@@ -1,5 +1,4 @@
 (function() {
-	
 	/* Canvas */
 
 	var canvas = document.getElementById('drawCanvas');
@@ -33,7 +32,7 @@
 
 	/* Pubnub */
 
-	var channel = 'draw';
+	var channel = 'draw3';
 
 	var pubnub = PUBNUB.init({
 		publish_key: 'pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695',
@@ -59,7 +58,19 @@
 			channel: channel,
 			message: data
 		});
-     }
+    }
+
+    if(drawHistory) {
+	    pubnub.history({
+	    	channel: channel,
+	    	count: 50,
+	    	callback: function(m){
+	    		for(var i=0; i < m[0].length; i++) {
+	    			drawFromStream(m[0][i]);
+	    		}
+	    	}
+		});
+	}
 
     /* Draw on canvas */
 
