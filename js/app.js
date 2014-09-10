@@ -83,7 +83,7 @@
     if(drawHistory) {
 	    pubnub.history({
 	    	channel  : channel,
-	    	limit    : 100,
+	    	count    : 50,
 	    	callback : function(messages) {
 	    		pubnub.each( messages[0], drawFromStream );
 	    	}
