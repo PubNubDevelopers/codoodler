@@ -35,8 +35,9 @@
 	var channel = 'draw3';
 
 	var pubnub = PUBNUB.init({
-		publish_key: 'pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695',
-		subscribe_key: 'sub-c-f762fb78-2724-11e4-a4df-02ee2ddab7fe',
+		publish_key     : 'pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695',
+		subscribe_key   : 'sub-c-f762fb78-2724-11e4-a4df-02ee2ddab7fe',
+		leave_on_unload : true
 	});
 
 	pubnub.subscribe({
@@ -74,9 +75,18 @@
     }
 
     function drawFromStream(message) {
-		if(!message || message.plots.length < 1) return;			
-	    drawOnCanvas(message.color, message.plots);
-	}
+		if(!message || message.plots.length < 1) return;
+		drawOnCanvas(message.color, message.plots);
+    }
+    
+    // Get Older and Past Drawings!
+    pubnub.history({
+    	channel  : channel,
+    	limit    : 100,
+    	callback : function(messages) {
+    		pubnub.each( messages[0], drawFromStream );
+    	}
+    })
 
     // Get Older and Past Drawings!
     if(drawHistory) {
