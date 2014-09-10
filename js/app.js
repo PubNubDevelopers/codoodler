@@ -32,7 +32,7 @@
 
 	/* Pubnub */
 
-	var channel = 'draw';
+	var channel = 'draw3';
 
 	var pubnub = PUBNUB.init({
 		publish_key: 'pub-c-156a6d5f-22bd-4a13-848d-b5b4d4b36695',
@@ -78,6 +78,16 @@
 	    drawOnCanvas(message.color, message.plots);
 	}
 
+    // Get Older and Past Drawings!
+    if(drawHistory) {
+	    pubnub.history({
+	    	channel  : channel,
+	    	limit    : 100,
+	    	callback : function(messages) {
+	    		pubnub.each( messages[0], drawFromStream );
+	    	}
+	    })
+	}
     var isActive = false;
     var plots = [];
 
