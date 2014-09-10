@@ -19,6 +19,19 @@ body {
     			radial-gradient(circle farthest-side at 50% 15%, #2c98dd, #1a5f96) no-repeat;
     background-color: #1a5f96;
 }
+body.alt {
+	background: url(../images/grid-pattern.png) left top repeat, 
+    			-webkit-radial-gradient(50% 15%, #1c802e, #012e13) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-moz-radial-gradient(50% 15%, #1c802e, #012e13) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-ms-radial-gradient(50% 15%, #1c802e, #012e13) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-o-radial-gradient(50% 15%, #1c802e, #012e13) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			radial-gradient(circle farthest-side at 50% 15%, #1c802e, #012e13) no-repeat;
+    background-color: #012e13;
+}
 header {
 	margin-bottom: 1em;
 }
