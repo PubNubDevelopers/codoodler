@@ -32,6 +32,19 @@ body.alt {
     			radial-gradient(circle farthest-side at 50% 15%, #1c802e, #012e13) no-repeat;
     background-color: #012e13;
 }
+body.alt2 {
+	background: url(../images/grid-pattern.png) left top repeat, 
+    			-webkit-radial-gradient(50% 15%, #ababab, #505050) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-moz-radial-gradient(50% 15%, #ababab, #505050) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-ms-radial-gradient(50% 15%, #ababab, #505050) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			-o-radial-gradient(50% 15%, #ababab, #505050) no-repeat;
+    background: url(../images/grid-pattern.png) left top repeat, 
+    			radial-gradient(circle farthest-side at 50% 15%, #ababab, #505050) no-repeat;
+    background-color: #505050;
+}
 header {
 	margin-bottom: 1em;
 }
@@ -159,6 +172,9 @@ header div {
 		width: 50px;
 		top: 120px;
 		right: 20px;
+	}
+	.alt2 #colorSwatch {
+		top: 30px;
 	}
 	.bubble {
 		top: 0;
