@@ -87,7 +87,7 @@
 	    	callback : function(messages) {
 	    		pubnub.each( messages[0], drawFromStream );
 	    	}
-	    })
+	    });
 	}
     var isActive = false;
     var plots = [];
