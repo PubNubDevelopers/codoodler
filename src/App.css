@@ -1,0 +1,18 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  background: linear-gradient(to right, #95ccfc 0%, #fadada 100%);
+}
+
+.main {
+  background-color: white;
+  border: 2px solid black;
+  margin-left: 50px;
+  float: left;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
