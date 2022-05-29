@@ -1,6 +1,5 @@
 function doodle() {
 	let key = window.location.hash.substring(1);
-	console.log(key);
 	if (key.length == 0) {
 		key = generateId(8);
 		window.location.hash = '#' + key;
@@ -20,7 +19,7 @@ function doodle() {
 	function dec2hex (dec) {
 		return dec.toString(16).padStart(2, "0")
 	}
-	
+
 	// generateId :: Integer -> String
 	function generateId (len) {
 		var arr = new Uint8Array((len || 40) / 2)

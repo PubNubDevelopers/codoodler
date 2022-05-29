@@ -7,7 +7,7 @@ class MyModel extends Croquet.Model {
     }
 
     init() {
-        this.strokes = [];        
+        this.strokes = [];
         this.subscribe("canvas", "draw", this.updateStrokes);
     }
 
@@ -21,8 +21,11 @@ class MyModel extends Croquet.Model {
 MyModel.register("MyModel");
 
 class Stroke {
-    constructor(color, plots) {
+    constructor(color, width, userId, plots) {
         this.color = color;
+        this.width = width;
+        this.userId = userId;
         this.plots = plots;
     }
 }
+

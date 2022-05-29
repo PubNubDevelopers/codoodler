@@ -11,37 +11,38 @@ class MyView extends Croquet.View {
         this.canvas = document.getElementById('drawCanvas');
         let canvas = this.canvas;
         this.ctx = this.canvas.getContext('2d');
-        this.selected_color = document.querySelector(':checked').getAttribute('data-color');
+        this.onSelectColor();
+        this.onSelectWidth();
 
         canvas.width = Math.min(document.documentElement.clientWidth, window.innerWidth || 300);
         canvas.height = Math.min(document.documentElement.clientHeight, window.innerHeight || 300);
-        
+
         let ctx = this.ctx;
-        ctx.lineWidth = '3';
         ctx.lineCap = ctx.lineJoin = 'round';
 
-        // Mouse and touch events        
+        // Mouse and touch events
 
-        this.onSelectColor();
         this.onSelectColor = this.onSelectColor.bind(this);
+        this.onSelectWidth = this.onSelectWidth.bind(this);
         this.onStartDraw = this.onStartDraw.bind(this);
         this.onDraw = this.onDraw.bind(this);
         this.onEndDraw = this.onEndDraw.bind(this);
 
         document.getElementById('colorSwatch').addEventListener('click', this.onSelectColor, false);
-        
+        document.getElementById('widthSelect').addEventListener('click', this.onSelectWidth, false);
+
         let isTouchSupported = 'ontouchstart' in window;
         let isPointerSupported = navigator.pointerEnabled;
         let isMSPointerSupported =  navigator.msPointerEnabled;
-        
+
         let downEvent = isTouchSupported ? 'touchstart' : (isPointerSupported ? 'pointerdown' : (isMSPointerSupported ? 'MSPointerDown' : 'mousedown'));
         let moveEvent = isTouchSupported ? 'touchmove' : (isPointerSupported ? 'pointermove' : (isMSPointerSupported ? 'MSPointerMove' : 'mousemove'));
         let upEvent = isTouchSupported ? 'touchend' : (isPointerSupported ? 'pointerup' : (isMSPointerSupported ? 'MSPointerUp' : 'mouseup'));
-            
+
         canvas.addEventListener(downEvent, this.onStartDraw, false);
         canvas.addEventListener(moveEvent, this.onDraw, false);
         canvas.addEventListener(upEvent, this.onEndDraw, false);
-        
+
         this.subscribe("canvas",  "updateView",  this.updateCanvas);
         this.updateCanvas();
     }
@@ -53,23 +54,28 @@ class MyView extends Croquet.View {
     }
 
     drawStrokeOnCanvas(stroke) {
-            // console.log(stroke);
-            if (stroke.plots.length < 2) {
-                return;
-            }
-            this.ctx.strokeStyle = stroke.color;
-            this.ctx.beginPath();
-            this.ctx.moveTo(stroke.plots[0].x, stroke.plots[0].y);
+        console.log(stroke);
+        if (stroke.plots.length < 2) {
+            return;
+        }
+        this.ctx.strokeStyle = stroke.color;
+        this.ctx.lineWidth = stroke.width;
+        this.ctx.beginPath();
+        this.ctx.moveTo(stroke.plots[0].x, stroke.plots[0].y);
 
-            for(var i=1; i<stroke.plots.length; i++) {
-                this.ctx.lineTo(stroke.plots[i].x, stroke.plots[i].y);
-            }
+        for(var i=1; i<stroke.plots.length; i++) {
+            this.ctx.lineTo(stroke.plots[i].x, stroke.plots[i].y);
+        }
 
-            this.ctx.stroke();
+        this.ctx.stroke();
     }
 
     onSelectColor() {
-        this.selected_color = document.querySelector(':checked').getAttribute('data-color');
+        this.selected_color = document.querySelector('#colorSwatch :checked').getAttribute('data-color');
+    }
+
+    onSelectWidth() {
+        this.selected_width = document.querySelector('#widthSelect :checked').getAttribute('data-width');
     }
 
 	onDraw(e) {
@@ -82,17 +88,18 @@ class MyView extends Croquet.View {
     	this.active_stroke.plots.push({x: (x << 0), y: (y << 0)}); // round numbers for touch screens
         this.drawStrokeOnCanvas(this.active_stroke);
 	}
-	
+
 	onStartDraw(e) {
 	  	e.preventDefault();
-	  	this.active_stroke = new Stroke(this.selected_color, []);
+	  	this.active_stroke = new Stroke(this.selected_color, this.selected_width, this.viewId, []);
 	}
-	
+
 	onEndDraw(e) {
 	  	e.preventDefault();
         let finished_stroke = this.active_stroke;
 	  	this.active_stroke = null;
-	  
+
         this.publish("canvas", "draw", finished_stroke);
 	}
 }
+
