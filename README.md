@@ -1,3 +1,7 @@
+## Please note that this project is no longer actively maintained or accepting Pull Requests.  Please use the [Collaboration Demo](https://github.com/PubNubDevelopers/collaboration-demo) instead.
+
+-------------------------------
+
 codoodler
 =========
 
